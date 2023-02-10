@@ -2,8 +2,13 @@
  * acquire_to_disk.c
  */
 
+#include "acquire_to_memory.h"
+
+#include <signal.h>
+#include <stdio.h>
+
 #include "ADQAPI.h"
-#include "settings.h"
+
 
 // Handler for CTRL+C interrupts
 static volatile int abort_acquisition = 0;
@@ -15,10 +20,12 @@ void sigint_handler(int signal)
     abort_acquisition = 1;
 }
 
-int main(int argc, char* argv[])
+int main()
 {
     // Connect to signal handler for CTRL+C interrupts
     signal(SIGINT, sigint_handler);
+
+    printf("Acquire to memory example\n");
 
     // Validate ADQAPI version
     switch (ADQAPI_ValidateVersion(ADQAPI_VERSION_MAJOR, ADQAPI_VERSION_MINOR))
@@ -35,10 +42,7 @@ int main(int argc, char* argv[])
     }
 
     // Initialize the a handle to the ADQ control unit object
-    void adq_control_unit = CreateADQControlUnit();
+    // void *adq_control_unit = CreateADQControlUnit();
     
-
-
-
     return 0;
 }

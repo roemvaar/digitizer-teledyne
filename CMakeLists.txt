@@ -1,41 +1,12 @@
 #
-# Teledyne ADQ32 Digitizer
+# Teledyne ADQ32 Digitizer Examples
 #
 
-cmake_minimum_required (VERSION 3.10)
+cmake_minimum_required (VERSION 3.5)
 
-project (digitizer_experiments LANGUAGES C)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+project(adq32_examples)
 
-set (SOURCE_FILES
-    acquire_to_disk.c
-)
-
-add_executable(acquire_to_disk ${SOURCE_FILES})
-
-target_compile_options(acquire_to_disk PRIVATE -Wall -Wextra -pedantic)
-target_compile_definitions(acquire_to_disk PUBLIC LINUX)
-
-if (UNIX)
-    target_compile_definitions(acquire_to_disk PUBLIC LINUX)
-
-    find_library(ADQ_LIB
-    NAMES libadq libadq.so
-    HINTS
-    "${CMAKE_SOURCE_DIR}/../../../source/.libs/"
-    "${CMAKE_SOURCE_DIR}/../../../build/"
-    )
-else ()
-    message("Only Linux build systems supported.")
-endif(UNIX)
-
-find_path(ADQAPI_INCLUDE
-  NAMES ADQAPI.h
-  HINTS
-    "${CMAKE_SOURCE_DIR}/../../../Release/"
-    "${CMAKE_SOURCE_DIR}/../../../build/"
-    ${ADQAPI_INSTALL_PATH}
-)
-
-target_link_libraries(acquire_to_disk ${ADQ_LIB})
-target_include_directories(acquire_to_disk PUBLIC ${ADQAPI_INCLUDE})
+add_subdirectory(acquire_to_disk)
+add_subdirectory(acquire_to_memory)
+add_subdirectory(continuous_acquisition)
+add_subdirectory(continuous_acquisition_gpu)

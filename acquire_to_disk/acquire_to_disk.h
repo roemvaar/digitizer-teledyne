@@ -1,0 +1,4 @@
+#ifndef ACQUIRE_TO_DISK_H
+#define ACQUIRE_TO_DISK_H
+
+#endif // ACQUIRE_TO_DISK_H

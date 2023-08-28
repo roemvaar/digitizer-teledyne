@@ -10,6 +10,11 @@ different capabilities.
 * Continuous acquisition
 * Continuous acquisition using GPU
 
+## Setup
+
+* Teledyne ADQ32 Digitizer
+* Waveform Generator
+
 ## Build
 
 Only works on Linux-based systems.

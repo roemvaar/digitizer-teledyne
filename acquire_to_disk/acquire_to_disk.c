@@ -20,13 +20,8 @@ void sigint_handler(int signal)
     abort_acquisition = 1;
 }
 
-int main()
+int configure_digitizer(void *control_unit)
 {
-    // Connect to signal handler for CTRL+C interrupts
-    signal(SIGINT, sigint_handler);
-
-    printf("Acquire to disk example\n");
-
     // Validate ADQAPI version
     switch (ADQAPI_ValidateVersion(ADQAPI_VERSION_MAJOR, ADQAPI_VERSION_MINOR))
     {
@@ -41,11 +36,43 @@ int main()
             break;
     }
 
-    // Initialize the a handle to the ADQ control unit object
-    //void *adq_control_unit = CreateADQControlUnit();
-    
+    // Initialize the handle to the ADQ control unit
+    control_unit = CreateADQControlUnit();
+    if (control_unit == NULL) {
+        printf("[error] Failed to create handle to ADQ control unit");
+        return -1;
+    }
+
+    return 0;
+
+}
+
+int acquire_to_disk()
+{
+
+    return 0;
+}
+
+int write_record_to_file(int channel, int record, void *buffer, size_t len)
+{
 
 
+    return 0;
+}
+
+int main()
+{
+    // Connect to signal handler for CTRL+C interrupts
+    signal(SIGINT, sigint_handler);
+
+    printf("Acquire to disk.\n");
+
+    // Configure and initialize digitizer
+    void *control_unit;
+    configure_digitizer(control_unit);
+
+    // Start acquisition
+    acquire_to_disk();
 
     return 0;
 }

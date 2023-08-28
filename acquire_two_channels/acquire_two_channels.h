@@ -1,8 +1,8 @@
 /*
  *  Copyright 2020 Teledyne Signal Processing Devices Sweden AB
  */
-#ifndef DATA_READOUT_SETTINGS_H_8BEI7N
-#define DATA_READOUT_SETTINGS_H_8BEI7N
+#ifndef ACQUIRE_TWO_CHANNELS_H
+#define ACQUIRE_TWO_CHANNELS_H
 
 #include "ADQAPI.h"
 
@@ -25,7 +25,8 @@
 #define CH1_TRIGGER_EDGE ADQ_EDGE_RISING
 
 /* The trigger threshold in volts. */
-#define TRIGGER_THRESHOLD_V 0.5
+// #define TRIGGER_THRESHOLD_V 0.5
+#define TRIGGER_THRESHOLD_V 2.0
 
 /* Periodic event source settings. The 'period' value takes precedence over the
    frequency. Set the period to zero to configure the event source using the
@@ -36,38 +37,41 @@
 /* Level trigger settings. */
 #define CH0_LT_LEVEL 2000
 #define CH0_LT_ARM_HYSTERESIS 100
-#define CH1_LT_LEVEL -1000
+// #define CH1_LT_LEVEL -1000
+#define CH1_LT_LEVEL 2000
 #define CH1_LT_ARM_HYSTERESIS 100
 
 /* Horizontal offset of the trigger point. Offset zero places the trigger. */
-#define CH0_HORIZONTAL_OFFSET 0
-#define CH1_HORIZONTAL_OFFSET 0
+#define CH0_HORIZONTAL_OFFSET -2000
+#define CH1_HORIZONTAL_OFFSET -2000
 
 /* The number of active channels: valid values are '1' or '2'. When there's only
    one active channel, that channel is channel 0. */
 #define NOF_ACTIVE_CHANNELS 2
 
 /* Record lengths per channel. */
-#define CH0_RECORD_LEN 1024
-#define CH1_RECORD_LEN 1024
+#define CH0_RECORD_LEN 10000
+#define CH1_RECORD_LEN 10000
 
 /* The number of records per received buffer. */
-#define NOF_RECORDS_PER_BUFFER 4
+#define NOF_RECORDS_PER_BUFFER 1
 
 /* Between 2 and 16 transfer buffers are supported. */
-#define NOF_TRANSFER_BUFFERS 4
+#define NOF_TRANSFER_BUFFERS 1
 
 /* The total number of buffers to receive before the measurement is complete. */
-#define NOF_BUFFERS_TO_RECEIVE 5
+#define NOF_BUFFERS_TO_RECEIVE 1
 
 /* Sample skip factor per channel. */
 #define CH0_SAMPLE_SKIP_FACTOR 1
 #define CH1_SAMPLE_SKIP_FACTOR 1
 
 /* Digital baseline stabilization (DBS) */
-#define CH0_DBS_LEVEL 1024
+#define CH0_DBS_LEVEL 5429
+// #define CH0_DBS_LEVEL 1024
 #define CH0_DBS_BYPASS 1
-#define CH1_DBS_LEVEL -3192
+#define CH1_DBS_LEVEL 5429
+// #define CH1_DBS_LEVEL -3192
 #define CH1_DBS_BYPASS 1
 
 /* Analog front-end (AFE) */
@@ -79,11 +83,11 @@
    - ADQ_TEST_PATTERN_SOURCE_COUNT_UP
    - ADQ_TEST_PATTERN_SOURCE_COUNT_DOWN
    - ADQ_TEST_PATTERN_SOURCE_TRIANGLE */
-#define CH0_TEST_PATTERN_SOURCE ADQ_TEST_PATTERN_SOURCE_TRIANGLE
-#define CH1_TEST_PATTERN_SOURCE ADQ_TEST_PATTERN_SOURCE_TRIANGLE
+#define CH0_TEST_PATTERN_SOURCE ADQ_TEST_PATTERN_SOURCE_COUNT_UP
+#define CH1_TEST_PATTERN_SOURCE ADQ_TEST_PATTERN_SOURCE_COUNT_UP
 
 /* Enable or disable the file writing. */
 #define WRITE_TO_FILE 1
 #define BASE_FILENAME "./data/data"
 
-#endif
+#endif   // ACQUIRE_TWO_CHANNELS_H

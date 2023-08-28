@@ -16,7 +16,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # List of files to plot
-file_list = ["build/acquire_two_channels/data/data_ch1_r0.bin"]
+file_list = ["../build/acquire_two_channels/data/data_ch0_r0.bin",
+             "../build/acquire_two_channels/data/data_ch0_r19.bin",
+             "../build/acquire_two_channels/data/data_ch1_r0.bin",
+             "../build/acquire_two_channels/data/data_ch1_r19.bin" ]
 
 # Data type to use for binary data. For ASCII this value is ignored.
 # Possible values are:

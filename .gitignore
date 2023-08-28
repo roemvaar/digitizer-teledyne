@@ -1,2 +1,3 @@
 build/*
 .vscode/*
+acquire_two_channels/pf_settings.h

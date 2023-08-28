@@ -7,6 +7,7 @@ different capabilities.
 
 * Acquire to disk
 * Acquire to memory
+* Acquire two channels
 * Continuous acquisition
 * Continuous acquisition using GPU
 
